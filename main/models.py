@@ -1,10 +1,11 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class About(models.Model):
     full_name = models.CharField(max_length=100,blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
     nationality = models.CharField(max_length=100,blank=True, null=True)
-    photo = models.ImageField(upload_to='about_photos/',blank=True, null=True)
+    photo = CloudinaryField("profile image", blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     phone = models.CharField(max_length=20,blank=True, null=True)
     field = models.CharField(max_length=100,blank=True, null=True) 
@@ -32,6 +33,16 @@ class Contact(models.Model):
         return self.email
 
 
+class Cv(models.Model):
+    cv = CloudinaryField(
+        "cv",
+        resource_type="raw",
+        blank=True,
+        null=True
+    )
+
+
+
 class Project(models.Model):
     PROJECT_TYPES = [
         ('mobile', 'Mobile App-Project'),
@@ -42,10 +53,15 @@ class Project(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField()
-    photo = models.ImageField(upload_to='about_photos/',blank=True, null=True)
+    photo = CloudinaryField("project image", blank=True, null=True)
     project_type = models.CharField(max_length=20, choices=PROJECT_TYPES)
     reason_for_the_project = models.TextField(blank=True, null=True)
-    video = models.FileField(upload_to='project_videos/', blank=True, null=True)
+    video = CloudinaryField(
+        "project video",
+        resource_type="video",
+        blank=True,
+        null=True
+    )
     problem_solved = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -86,7 +102,7 @@ class Education(models.Model):
 
 class Certification(models.Model):
     title = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='certificates/', blank=True, null=True)
+    photo = CloudinaryField("certificate image", blank=True, null=True)
 
     def __str__(self):
         return self.title
