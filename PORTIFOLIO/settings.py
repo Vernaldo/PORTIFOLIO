@@ -141,13 +141,12 @@ USE_TZ = True
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 
-
-
-
 cloudinary.config(secure=True)
 
 
-
+# STATIC FILES
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 
