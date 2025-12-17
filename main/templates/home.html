@@ -250,6 +250,7 @@ footer {
         <div class="name-title">
             <h1>Vernon Isaac</h1>
             <h3>Computer Engineer & Developer</h3>
+            
         </div>
     </div>
 
@@ -264,9 +265,11 @@ footer {
         <a href="#contact">Contact</a>
 
         <!-- CV Button -->
-        <a href="/media/cv/MY CV.pdf" download class="download-btn">
+        {% if cv and cv.cv_file %}
+        <a href="{{ cv.cv_file.url }}?fl_attachment" class="download-btn" download>
             Download CV
         </a>
+        {% endif %}
     </nav>
 </header>
 

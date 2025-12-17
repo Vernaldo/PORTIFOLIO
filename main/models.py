@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 class About(models.Model):
     full_name = models.CharField(max_length=100,blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
@@ -34,7 +35,7 @@ class Contact(models.Model):
 
 
 class Cv(models.Model):
-    cv = CloudinaryField(
+    cv_file = CloudinaryField(
         "cv",
         resource_type="raw",
         blank=True,

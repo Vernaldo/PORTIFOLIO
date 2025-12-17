@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import About, Skill, Project, Contact, WorkExperience, Education, Certification, Referee
+from .models import About, Skill, Cv, Project, Contact, WorkExperience, Education, Certification, Referee
 import re
 
 def normalize(text):
@@ -12,6 +12,7 @@ def normalize(text):
 def home(request):
     about = About.objects.first()
     skills = Skill.objects.all()
+    cv = Cv.objects.last()
     projects = Project.objects.all().order_by('-created_at')
     contact = Contact.objects.first()
     work_experiences = WorkExperience.objects.all().order_by('-start_date')
@@ -59,6 +60,7 @@ def home(request):
     return render(request, 'home.html', {
         'about': about,
         'skills': skills,
+        'cv': cv,
         'projects': projects,
         'contact': contact,
         'work_experiences': work_experiences,
